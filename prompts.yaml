@@ -15,6 +15,189 @@ analysis: |
   - Recommendations
   - Follow-up Actions (if needed)
 
+# Enhanced prompts for detailed medical analysis
+detailed_analysis: |
+  You are a senior medical specialist conducting a comprehensive clinical analysis. 
+  
+  PATIENT DATA:
+  {content}
+  
+  ANALYSIS REQUIREMENTS:
+  {prompt}
+  
+  Provide a DETAILED, PROFESSIONAL medical analysis following this structure:
+  
+  1. **CLINICAL ASSESSMENT**
+     - Detailed analysis of presenting symptoms
+     - Relevant clinical findings from the patient data
+     - Key observations and clinical reasoning
+  
+  2. **DIFFERENTIAL DIAGNOSES**
+     - List 3-5 possible diagnoses with reasoning
+     - Include both common and serious conditions
+     - Explain why each is considered or ruled out
+  
+  3. **SPECIFIC FINDINGS**
+     - Detailed interpretation of any test results
+     - Clinical significance of findings
+     - Any abnormal or concerning results
+  
+  4. **TREATMENT RECOMMENDATIONS**
+     - Specific medications with dosages if applicable
+     - Non-pharmacological interventions
+     - Lifestyle modifications
+     - Monitoring requirements
+  
+  5. **FOLLOW-UP PLAN**
+     - Specific timeline for follow-up
+     - Additional investigations if needed
+     - Referral recommendations
+  
+  Write in professional medical language with the depth and detail expected in a hospital medical report. 
+  Be comprehensive, specific, and clinically relevant.
+
+comprehensive_summary: |
+  Analyze the following medical case and extract structured information. Return ONLY a valid JSON object with these exact fields:
+  {{
+      "presenting_complaint": "Detailed description of the patient's main symptoms and chief complaint",
+      "history": "Comprehensive medical, family, and social history with relevant details", 
+      "examination": "Detailed physical examination findings including vital signs and clinical observations",
+      "investigations": "Comprehensive list of lab tests, imaging, and diagnostic procedures with results",
+      "diagnosis": "Primary and secondary diagnoses with clinical reasoning",
+      "differentials": "Detailed differential diagnoses with reasoning for each",
+      "recommendations": "Specific treatment recommendations including medications, dosages, and non-pharmacological interventions",
+      "followup": "Detailed follow-up plan with timeline and monitoring requirements",
+      "clinical_summary": "Comprehensive clinical assessment and overall management plan"
+  }}
+
+  Medical Case:
+  {text}
+
+  IMPORTANT: Provide detailed, professional medical analysis with the depth expected in a hospital medical report. Include specific clinical reasoning, differential diagnoses, and comprehensive treatment plans.
+  Return ONLY the JSON object, no additional text, no markdown formatting, no code blocks.
+
+summarize_chunk: |
+  Summarize and analyze the following medical text in detail, preserving all relevant information.
+  
+  Text:
+  {chunk}
+  
+  Provide a comprehensive summary that includes:
+  - Key medical findings and observations
+  - Clinical significance of any test results
+  - Important patient information
+  - Any concerning patterns or trends
+  - Relevant medical terminology and context
+  
+  Maintain professional medical language and focus on factual observations.
+
+# Fallback prompts for when templates are not found
+fallback_summarize_chunk: |
+  Summarize and analyze the following medical text in detail, preserving all relevant information.
+  
+  Text:
+  {chunk}
+
+fallback_detailed_analysis: |
+  You are a senior medical specialist conducting a comprehensive clinical analysis. 
+  
+  PATIENT DATA:
+  {content}
+  
+  ANALYSIS REQUIREMENTS:
+  {prompt}
+  
+  Provide a detailed, professional medical analysis with clinical assessment, differential diagnoses, specific findings, treatment recommendations, and follow-up plan.
+
+fallback_comprehensive_summary: |
+  Analyze the following medical case and extract structured information. Return ONLY a valid JSON object with these exact fields:
+  {{
+      "presenting_complaint": "Detailed description of the patient's main symptoms and chief complaint",
+      "history": "Comprehensive medical, family, and social history with relevant details", 
+      "examination": "Detailed physical examination findings including vital signs and clinical observations",
+      "investigations": "Comprehensive list of lab tests, imaging, and diagnostic procedures with results",
+      "diagnosis": "Primary and secondary diagnoses with clinical reasoning",
+      "differentials": "Detailed differential diagnoses with reasoning for each",
+      "recommendations": "Specific treatment recommendations including medications, dosages, and non-pharmacological interventions",
+      "followup": "Detailed follow-up plan with timeline and monitoring requirements",
+      "clinical_summary": "Comprehensive clinical assessment and overall management plan"
+  }}
+
+  Medical Case:
+  {text}
+
+  IMPORTANT: Provide detailed, professional medical analysis with the depth expected in a hospital medical report. Include specific clinical reasoning, differential diagnoses, and comprehensive treatment plans.
+  Return ONLY the JSON object, no additional text, no markdown formatting, no code blocks.
+
+# System prompts for API calls
+system_medical_expert: |
+  You are a medical expert. Summarize and analyze the following medical text in detail, preserving all relevant information.
+
+system_senior_specialist: |
+  You are a senior medical specialist. Provide comprehensive, detailed clinical analysis with differential diagnoses, specific findings, treatment recommendations, and follow-up plans.
+
+# Additional prompts for comprehensive analysis
+comprehensive_analysis_prompt: |
+  You are a senior medical specialist conducting a comprehensive clinical analysis. 
+  
+  PATIENT DATA:
+  {content}
+  
+  ANALYSIS REQUIREMENTS:
+  {prompt}
+  
+  Provide a DETAILED, PROFESSIONAL medical analysis following this structure:
+  
+  1. **CLINICAL ASSESSMENT**
+     - Detailed analysis of presenting symptoms
+     - Relevant clinical findings from the patient data
+     - Key observations and clinical reasoning
+  
+  2. **DIFFERENTIAL DIAGNOSES**
+     - List 3-5 possible diagnoses with reasoning
+     - Include both common and serious conditions
+     - Explain why each is considered or ruled out
+  
+  3. **SPECIFIC FINDINGS**
+     - Detailed interpretation of any test results
+     - Clinical significance of findings
+     - Any abnormal or concerning results
+  
+  4. **TREATMENT RECOMMENDATIONS**
+     - Specific medications with dosages if applicable
+     - Non-pharmacological interventions
+     - Lifestyle modifications
+     - Monitoring requirements
+  
+  5. **FOLLOW-UP PLAN**
+     - Specific timeline for follow-up
+     - Additional investigations if needed
+     - Referral recommendations
+  
+  Write in professional medical language with the depth and detail expected in a hospital medical report. 
+  Be comprehensive, specific, and clinically relevant.
+
+# Enhanced fallback prompts
+enhanced_fallback_analysis: |
+  Patient Data: {content}
+  
+  Analysis Task: {prompt}
+  
+  Provide detailed professional medical analysis with clinical assessment, differential diagnoses, specific findings, treatment recommendations, and follow-up plan.
+
+# Additional fallback prompts for specific use cases
+fallback_summarize_text: |
+  Summarize and analyze the following medical text in detail, preserving all relevant information.
+  
+  Text:
+  {text}
+
+fallback_summarize_chunk_text: |
+  Summarize and analyze the following medical text in detail, preserving all relevant information.
+  
+  Text:
+  {chunk}
+
 cardiology:
   analysis: |
     You are a cardiologist analyzing a medical report. Focus on:
@@ -429,4 +612,307 @@ geriatrics:
     1. Geriatric context
     2. Functional status
     3. Treatment implications
-    4. Social support 
+    4. Social support
+
+# Final fallback prompts for when all else fails
+final_fallback_chunk: |
+  Summarize and analyze the following medical text in detail, preserving all relevant information.
+  
+  Text:
+  {chunk}
+
+final_fallback_text: |
+  Summarize and analyze the following medical text in detail, preserving all relevant information.
+  
+  Text:
+  {text}
+
+final_fallback_analysis: |
+  Patient Data: {content}
+  
+  Analysis Task: {prompt}
+  
+  Provide detailed professional medical analysis with clinical assessment, differential diagnoses, specific findings, treatment recommendations, and follow-up plan.
+
+# Ultimate fallback prompts for when all templates fail
+ultimate_fallback_chunk: |
+  Summarize and analyze the following medical text in detail, preserving all relevant information.
+  
+  Text:
+  {chunk}
+
+ultimate_fallback_text: |
+  Summarize and analyze the following medical text in detail, preserving all relevant information.
+  
+  Text:
+  {text}
+
+ultimate_fallback_analysis: |
+  Patient Data: {content}
+  
+  Analysis Task: {prompt}
+  
+  Provide detailed professional medical analysis with clinical assessment, differential diagnoses, specific findings, treatment recommendations, and follow-up plan.
+
+# Ultimate fallback system prompts
+ultimate_system_medical_expert: |
+  You are a medical expert. Summarize and analyze the following medical text in detail, preserving all relevant information.
+
+ultimate_system_senior_specialist: |
+  You are a senior medical specialist. Provide comprehensive, detailed clinical analysis with differential diagnoses, specific findings, treatment recommendations, and follow-up plans.
+
+# Chat and conversation prompts
+chat_system_prompt: |
+  You are a medical AI assistant with access to a detailed medical analysis report and conversation history. 
+  Your role is to answer questions about the medical report and provide general medical information.
+  
+  IMPORTANT GUIDELINES:
+  1. NEVER prescribe medications - only provide general medical information
+  2. If asked about specific treatments, refer to consulting with healthcare professionals
+  3. For preliminary care advice, only provide general recommendations
+  4. If you cannot answer a question based on the report, say so clearly
+  5. Use the conversation context to provide relevant answers
+  6. Maintain medical accuracy and professional tone
+
+chat_context_prompt: |
+  CONVERSATION CONTEXT:
+  Original Medical Data: {original_data}
+  
+  Medical Analysis Report: {analysis_report}
+  
+  Recent Conversation History:
+  {chat_history}
+  
+  USER QUESTION: {user_question}
+  
+  Please provide a helpful, accurate response based on the available information. 
+  If the question cannot be answered from the report or your medical knowledge, 
+  clearly state what information is missing or recommend consulting a healthcare professional.
+
+chat_general_medical_prompt: |
+  You are a medical AI assistant providing general medical information. 
+  The user has asked: {user_question}
+  
+  Please provide accurate, general medical information. Remember:
+  - Do not prescribe medications
+  - Do not provide specific treatment plans
+  - Focus on general information and education
+  - Recommend consulting healthcare professionals for specific advice
+  - If you cannot provide accurate information, say so clearly
+
+chat_agent_routing_prompt: |
+  Analyze the following question and determine which medical specialty agent would be most appropriate to answer it.
+  
+  Question: {user_question}
+  
+  Available specialties: cardiology, neurology, pulmonology, endocrinology, gastroenterology, 
+  hematology, nephrology, rheumatology, infectious_disease, oncology, dermatology, 
+  ophthalmology, orthopedics, psychiatry, pediatrics, geriatrics
+  
+  Consider:
+  1. Medical terms and symptoms mentioned
+  2. Body systems involved
+  3. Type of medical condition suggested
+  
+  Return only the most appropriate specialty name, or "general" if no specific specialty is needed.
+
+chat_confidence_assessment_prompt: |
+  Assess your confidence in answering the following question based on the available information.
+  
+  Question: {user_question}
+  
+  Available Information:
+  - Original medical data: {has_original_data}
+  - Analysis report: {has_analysis_report}
+  - Conversation history: {has_chat_history}
+  - Medical knowledge: Available
+  
+  Rate your confidence from 0.0 to 1.0 where:
+  - 0.0-0.3: Very low confidence, significant information missing
+  - 0.4-0.6: Moderate confidence, some information available
+  - 0.7-0.9: High confidence, good information available
+  - 1.0: Very high confidence, comprehensive information available
+  
+  Return only the confidence score as a number.
+
+# Medical Diagnostics AI System Prompts
+# This file contains all prompts used by the system
+
+# System-wide prompts
+system_prompt: |
+  You are a medical AI assistant designed to help with medical analysis and provide general medical information. 
+  You are NOT a doctor and cannot provide medical advice, diagnose conditions, or prescribe medications.
+  Always recommend consulting healthcare professionals for specific medical concerns.
+  Be professional, accurate, and prioritize patient safety.
+
+# Agent routing and analysis prompts
+agent_routing_prompt: |
+  Based on the medical text provided, determine which medical specialty agents should analyze this case.
+  Consider the symptoms, conditions, and medical terminology mentioned.
+  Return a list of relevant specialties separated by commas.
+
+  Medical text: {medical_text}
+
+  Relevant specialties:
+
+agent_analysis_prompt: |
+  As a {specialty} specialist, analyze the following medical case:
+  
+  {medical_text}
+  
+  Provide a comprehensive analysis including:
+  1. Clinical assessment
+  2. Differential diagnosis
+  3. Recommended diagnostic tests
+  4. Treatment considerations
+  5. Follow-up recommendations
+  
+  Be thorough, professional, and patient-specific.
+
+review_prompt: |
+  Review the following medical analysis for accuracy and completeness:
+  
+  Original medical text: {original_text}
+  Analysis report: {analysis_report}
+  
+  Score the analysis on a scale of 0-1 based on:
+  - Relevance to the original text
+  - Clinical accuracy
+  - Completeness of assessment
+  - Professional quality
+  
+  Provide a score and brief explanation.
+
+# Chat-related prompts
+chat_system_prompt: |
+  You are a medical AI assistant in a chat interface. You can answer questions about:
+  - Medical analysis reports that have been generated
+  - General medical information and concepts
+  - Symptoms and conditions (general information only)
+  - Treatment approaches (general recommendations only)
+  
+  You CANNOT:
+  - Provide specific medical advice
+  - Diagnose conditions
+  - Prescribe medications
+  - Replace professional medical consultation
+  
+  Always recommend consulting healthcare professionals for specific medical concerns.
+
+chat_context_prompt: |
+  You are a medical AI assistant helping with questions about a medical analysis.
+  
+  CONTEXT:
+  Original Medical Data: {original_data}
+  
+  Analysis Report: {analysis_report}
+  
+  Previous Conversation: {chat_history}
+  
+  USER QUESTION: {user_question}
+  
+  Please provide a helpful response based on the available information.
+  If the question is about the specific analysis, reference the report.
+  If it's a general medical question, provide educational information.
+  Always maintain professional medical standards and recommend consulting healthcare professionals when appropriate.
+
+chat_agent_routing_prompt: |
+  Based on the user's question, determine which medical specialty would be most appropriate to answer it.
+  
+  User Question: {user_question}
+  
+  Available specialties:
+  - cardiology (heart, cardiac, chest pain, ECG)
+  - neurology (brain, nerve, headache, seizure)
+  - pulmonology (lung, breathing, asthma)
+  - endocrinology (hormone, diabetes, thyroid)
+  - gastroenterology (stomach, intestine, liver)
+  - hematology (blood, anemia, leukemia)
+  - nephrology (kidney, renal, dialysis)
+  - rheumatology (joint, arthritis, lupus)
+  - infectious_disease (infection, bacterial, viral)
+  - oncology (cancer, tumor, malignant)
+  - dermatology (skin, rash, dermatitis)
+  - ophthalmology (eye, vision, retina)
+  - orthopedics (bone, joint, fracture)
+  - psychiatry (mental, depression, anxiety)
+  - pediatrics (child, pediatric, growth)
+  - geriatrics (elderly, aging, dementia)
+  - general (general medical questions)
+  
+  Return only the specialty name:
+
+chat_confidence_assessment_prompt: |
+  Assess your confidence in answering the user's question based on available context.
+  
+  User Question: {user_question}
+  Has Original Data: {has_original_data}
+  Has Analysis Report: {has_analysis_report}
+  Has Chat History: {has_chat_history}
+  
+  Consider:
+  - Relevance of available information to the question
+  - Completeness of context
+  - Specificity of the question
+  
+  Return a confidence score between 0.0 and 1.0:
+  - 0.9-1.0: High confidence with complete relevant context
+  - 0.7-0.8: Good confidence with relevant context
+  - 0.5-0.6: Moderate confidence with some relevant context
+  - 0.3-0.4: Low confidence with limited context
+  - 0.1-0.2: Very low confidence with minimal context
+  
+  Confidence score:
+
+# Fallback prompts (used when LLM is unavailable)
+fallback_analysis_prompt: |
+  Based on the medical text provided, generate a comprehensive medical analysis report.
+  
+  Medical Text: {medical_text}
+  
+  Generate a detailed report including:
+  1. Clinical Assessment
+  2. Key Findings
+  3. Differential Diagnosis
+  4. Recommended Diagnostic Tests
+  5. Treatment Considerations
+  6. Follow-up Recommendations
+  
+  Be thorough and professional in your analysis.
+
+fallback_chat_prompt: |
+  You are a medical AI assistant. The user has asked a question about medical information.
+  
+  Question: {user_question}
+  
+  Available Context:
+  - Original Data: {original_data}
+  - Analysis Report: {analysis_report}
+  
+  Provide a helpful response based on the available information.
+  If you cannot answer the question with the available context, provide general educational information.
+  Always recommend consulting healthcare professionals for specific medical advice.
+
+# Document extraction prompts
+document_extraction_prompt: |
+  Extract all relevant medical information from the provided document.
+  Focus on:
+  - Patient symptoms and complaints
+  - Medical history
+  - Test results and findings
+  - Diagnoses and conditions
+  - Medications and treatments
+  - Recommendations and follow-up
+  
+  Document content: {document_content}
+  
+  Extracted medical information:
+
+# Error handling prompts
+error_prompt: |
+  An error occurred while processing the medical analysis.
+  Please provide a helpful message to the user explaining what happened and suggesting next steps.
+  
+  Error details: {error_details}
+  
+  User-friendly error message: 

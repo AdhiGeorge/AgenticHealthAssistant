@@ -1,0 +1,8 @@
+Collecting reportlab
+  Downloading reportlab-4.4.2-py3-none-any.whl.metadata (1.8 kB)
+Requirement already satisfied: pillow>=9.0.0 in d:\project\ai-agents-for-medical-diagnostics\venv\lib\site-packages (from reportlab) (11.2.1)
+Requirement already satisfied: charset-normalizer in d:\project\ai-agents-for-medical-diagnostics\venv\lib\site-packages (from reportlab) (3.4.2)
+Downloading reportlab-4.4.2-py3-none-any.whl (2.0 MB)
+   ---------------------------------------- 2.0/2.0 MB 1.2 MB/s eta 0:00:00
+Installing collected packages: reportlab
+Successfully installed reportlab-4.4.2

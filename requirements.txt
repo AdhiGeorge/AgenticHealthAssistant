@@ -70,3 +70,18 @@ tqdm
 
 # New dependency
 langgraph
+
+# New dependencies for enhanced CLI and Qdrant
+groq
+langchain
+langchain-google-genai
+langchain-groq
+PyPDF2
+uuid
+
+# New dependencies for streamlit
+streamlit
+streamlit-lottie
+
+# New dependency for reportlab
+reportlab

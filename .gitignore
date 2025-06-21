@@ -35,6 +35,7 @@ env/
 # Project specific
 .env
 logs/
+outputs/
 results/
 *.log
 *.json
@@ -74,7 +75,7 @@ app.log
 daily_*.log
 
 # Project specific
-medical_reports/
+data/medical_reports/
 output/
 diagnoses/
 *.pdf

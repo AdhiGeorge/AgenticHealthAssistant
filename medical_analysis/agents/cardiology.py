@@ -1,4 +1,4 @@
-from .base import MedicalAgent
+from .base_agent import MedicalAgent
 # from langgraph.graph import StateGraph
 
 class CardiologyAgent(MedicalAgent):
@@ -10,7 +10,7 @@ class CardiologyAgent(MedicalAgent):
         """
         Analyze medical content using chain-of-thought prompting for cardiology.
         """
-        prompt = self.prompts.get("analysis", "").format(content=content[:10000])
+        prompt = self.prompts.get(self.specialty, {}).get("analysis", "").format(content=content[:10000])
         # Chain-of-thought: Stepwise reasoning
         cot_prompt = (
             f"Let's think step by step as a cardiologist.\n"

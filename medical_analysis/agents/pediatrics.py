@@ -1,4 +1,4 @@
-from .base import MedicalAgent
+from .base_agent import MedicalAgent
 # from langgraph.graph import StateGraph
 
 class PediatricsAgent(MedicalAgent):

@@ -1,4 +1,4 @@
-from .base import MedicalAgent
+from .base_agent import MedicalAgent
 # from langgraph.graph import StateGraph
 
 class PsychiatryAgent(MedicalAgent):
@@ -6,7 +6,7 @@ class PsychiatryAgent(MedicalAgent):
         super().__init__(specialty="psychiatry", model=model, use_gpu=use_gpu)
 
     def analyze(self, content: str, use_cache: bool = True):
-        prompt = self.prompts.get("analysis", "").format(content=content[:10000])
+        prompt = self.prompts.get(self.specialty, {}).get("analysis", "").format(content=content[:10000])
         cot_prompt = (
             f"Let's think step by step as a psychiatrist.\n"
             f"{prompt}\n"

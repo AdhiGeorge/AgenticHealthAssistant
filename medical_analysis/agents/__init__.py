@@ -1,6 +1,6 @@
-"""Medical agents package."""
+"""Agents package for medical diagnostics AI system."""
 
-from .base import MedicalAgent
+from .base_agent import MedicalAgent
 from .orchestrator import OrchestratorAgent
 from .cardiology import CardiologyAgent
 from .neurology import NeurologyAgent
