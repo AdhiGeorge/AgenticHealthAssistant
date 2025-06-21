@@ -1,9 +1,72 @@
-langchain==0.1.12
-langchain-community 
-langchain-google-genai==0.0.11
+# Core Dependencies
+python-dotenv
+pydantic
+
+# Database
+sqlalchemy
+alembic
+aiosqlite
+
+# Vector Store & Embeddings
+qdrant-client
+sentence-transformers
+torch
+transformers
+
+# File Processing
+pymupdf
+python-docx
+openpyxl
+pandas
+Pillow
+pytesseract
+easyocr
+opencv-python-headless
+
+# Web & Search
+duckduckgo-search
+beautifulsoup4
+requests
+lxml
+
+# AI & NLP
 google-generativeai
-groq
-python-dotenv==1.0.1
-langchain_ollama
-reportlab
-PyYAML==6.0.1
+sentencepiece
+
+# Utilities
+rich
+click
+PyYAML
+tqdm
+python-dateutil
+joblib
+python-magic
+python-magic-bin; platform_system=="Windows"
+
+# Development
+devtools
+pytest
+pytest-asyncio
+black
+flake8
+mypy
+isort
+
+# Testing and Development
+pytest
+pytest-asyncio
+httpx
+python-jose
+passlib
+bcrypt
+black
+flake8
+mypy
+
+# Utilities
+python-dateutil
+pytz
+tqdm
+
+# New dependency
+langgraph

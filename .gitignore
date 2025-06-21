@@ -22,12 +22,33 @@ wheels/
 
 # Virtual Environment
 venv/
-env/
 ENV/
+env/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Project specific
 .env
-.venv
-env.bak/
-venv.bak/
+logs/
+results/
+*.log
+*.json
+!config.json
+
+# Database
+*.db
+*.sqlite3
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+*~
 
 # IDE - VSCode
 .vscode/
