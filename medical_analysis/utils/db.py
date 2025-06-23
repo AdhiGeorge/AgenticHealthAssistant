@@ -7,6 +7,10 @@ from contextlib import contextmanager
 
 DB_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), '..', 'results', 'analysis_memory.db')
 
+# Ensure the results directory exists before any DB operation
+results_dir = os.path.dirname(DB_PATH)
+os.makedirs(results_dir, exist_ok=True)
+
 @contextmanager
 def get_conn():
     conn = sqlite3.connect(DB_PATH)

@@ -1,0 +1,43 @@
+# System Configuration
+
+api_keys:
+  gemini: "${GEMINI_API_KEY}"
+  groq: "${GROQ_API_KEY}"
+
+models:
+  primary: gemini
+  fallback: groq
+  gemini_model: gemini-1.5-flash
+  groq_model: mixtral-8x7b-32768
+  max_tokens: 2048
+  chunk_overlap: 200
+
+# Review and quality control settings
+review_threshold: 0.5
+
+logging:
+  version: 1
+  disable_existing_loggers: False
+  formatters:
+    standard:
+      format: '[%(asctime)s] %(levelname)s %(name)s: %(message)s'
+  handlers:
+    console:
+      level: INFO
+      class: logging.StreamHandler
+      formatter: standard
+    file:
+      level: INFO
+      class: logging.FileHandler
+      formatter: standard
+      filename: app.log
+      mode: a
+  root:
+    handlers: [console, file]
+    level: INFO
+
+file_storage:
+  upload_dir: ./data/medical_reports
+  max_upload_size: 10485760
+
+# Add more configuration sections as needed 

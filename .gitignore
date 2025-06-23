@@ -22,8 +22,8 @@ wheels/
 
 # Virtual Environment
 venv/
-ENV/
-env/
+# ENV/
+# env/
 
 # IDE
 .idea/
@@ -33,7 +33,7 @@ env/
 .DS_Store
 
 # Project specific
-.env
+# .env   # <--- Do NOT ignore .env
 logs/
 outputs/
 results/
@@ -98,7 +98,7 @@ desktop.ini
 *.tmp
 
 # Configuration files with sensitive data
-config.yaml
+# config.yaml   # <--- Do NOT ignore config.yaml
 .env.local
 .env.*.local
 

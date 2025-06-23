@@ -360,6 +360,12 @@ class ChatManager:
         # Check if question references the report or analysis
         if context.get('analysis') and any(kw in question_lower for kw in ['report', 'analysis', 'finding', 'diagnosis']):
             return True
+        # NEW: Check if the question's main words/phrases are present in the report or analysis text
+        report_text = (context.get('original', '') + ' ' + context.get('analysis', '')).lower()
+        # Split question into words and check if any are present in the report/analysis
+        question_words = [w for w in question_lower.split() if len(w) > 2]
+        if any(word in report_text for word in question_words):
+            return True
         return False
 
     def ask_question(self, conversation_id: str, question: str) -> Dict:
@@ -372,14 +378,6 @@ class ChatManager:
                     'success': False,
                     'error': 'Conversation not found',
                     'response': None
-                }
-
-            # Strict relevance check
-            if not self._is_question_relevant(question, context):
-                return {
-                    'success': False,
-                    'error': 'irrelevant',
-                    'response': "Sorry, I can only answer questions related to the medical report, the analysis, or the medical field. Please ask a relevant medical question."
                 }
 
             # Search for relevant context using vector similarity
